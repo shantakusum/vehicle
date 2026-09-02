@@ -14,7 +14,7 @@ const Dashboard = () => {
   const getDashboard = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/dashboard"
+        "http://localhost:8080/api/dashboard"
       );
 
       console.log(response.data);
@@ -27,7 +27,7 @@ const Dashboard = () => {
   const getBooking = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/bookings"
+        "http://localhost:8080/api/bookings"
       );
 
       console.log(response.data);
