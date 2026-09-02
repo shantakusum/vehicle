@@ -3,34 +3,47 @@ import axios from "axios";
 import { BACKEND_URL } from '../../environment';
 
 const BookService = () => {
-
+    const user = JSON.parse(localStorage.getItem("user"));
+    const UserId = user.UserId;
     const [services, setServices] = useState([]);
-
+    const [mechanics, setMechanics] = useState([]);
     const [formData, setFormData] = useState({
+        UserId: UserId,         //user.UserId
         ServiceId: "",
+        MechanicId: "",
         Vehicle: ""
     });
 
     // Get services
     useEffect(() => {
         getServices();
+        getMechanics();
     }, []);
+   
 
     const getServices = async () => {
         try {
             const response = await axios.get(
                 BACKEND_URL+"/api/service"
             );
-
             console.log(response.data);
-
             setServices(response.data);
-
         } catch (error) {
             console.log("Service Error:", error);
         }
     };
+    const getMechanics = async () => {
+    try {
+        const response = await axios.get(
+            BACKEND_URL + "/api/mechanic"
+        );
 
+        console.log(response.data);
+        setMechanics(response.data);
+    } catch (error) {
+        console.log("Mechanic Error:", error);
+    }
+};
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -107,6 +120,33 @@ const BookService = () => {
 
                         </select>
 
+                    </div>
+                    {/* mechanic */}
+                    <div className="mb-5">
+                        <label className="mb-2 block text-sm font-medium text-gray-700">
+                            Select Mechanic
+                        </label>
+
+                        <select
+                            name="MechanicId"
+                            value={formData.MechanicId}
+                            onChange={handleChange}
+                            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3"
+                            required
+                        >
+                            <option value="">
+                                Select a mechanic
+                            </option>
+
+                            {mechanics.map((mechanic) => (
+                                <option
+                                    key={mechanic.MechanicId}
+                                    value={mechanic.MechanicId}
+                                >
+                                    {mechanic.MechanicName}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     {/* Vehicle */}

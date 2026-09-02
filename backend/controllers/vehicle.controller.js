@@ -18,10 +18,28 @@ module.exports = {
         });   //findAll array return krta hai [{}, {}]
         return res.json(bookingDetails)
     },
+    postBooking: async(req, res) => {
+        try{
+            console.log(req.body);
+            const{ UserId, MechanicId, ServiceId, Vehicle } = req.body;
+            const booking = await db.Booking.create({
+                  UserId,
+                  MechanicId,
+                  ServiceId,
+                  Vehicle 
+            });
+            return res.status(201).json(booking);
+            }catch(error){
+                return res.status(500).json({
+                    message: error.message
+                })
+            }   
+    },
     getCustomer: async(req, res) => {
         const customerDetails = await db.User.findAll();   //findAll array return krta hai [{}, {}]
         return res.json(customerDetails)
     },
+    
     postCustomer: async(req, res) => {
         try{
             console.log(req.body);

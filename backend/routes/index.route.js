@@ -24,6 +24,7 @@ router.post("/checkEmail", auth.checkEmail);
 
 //booking
 router.get("/bookings", vehicle.getBooking);
+router.post("/bookings", vehicle.postBooking);
 
 //customer
 router.get("/customers", vehicle.getCustomer);
