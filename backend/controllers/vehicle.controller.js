@@ -25,9 +25,9 @@ module.exports = {
     postCustomer: async(req, res) => {
         try{
             console.log(req.body);
-            const{ UserId, FullName, UserEmail, Password, Phone } = req.body;
+            const{ FullName, UserEmail, Password, Phone } = req.body;
             const user = await db.User.create({
-                UserId,  
+                  
                 FullName,
                 UserEmail, 
                 Password, 
@@ -46,10 +46,10 @@ module.exports = {
     },
     postMechanic: async(req, res) => {
         try{
-            const{ MechanicId, Name, Phone, Status } = req.body;
+            const{  Name, Phone, Status } = req.body;
             
             const mechanic = await db.Mechanic.create({
-                MechanicId,  
+                  
                 Name,
                 Phone, 
                 Status
@@ -67,10 +67,10 @@ module.exports = {
     },
     postService: async(req, res) => {
         try{
-            const{ ServiceId, FullName, Category, Price } = req.body;
+            const{ FullName, Category, Price } = req.body;
             
             const service = await db.Service.create({ 
-                ServiceId, 
+                 
                 FullName,
                 Category, 
                 Price

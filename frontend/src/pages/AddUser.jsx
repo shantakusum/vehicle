@@ -22,7 +22,7 @@ const AddUser = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/customers",
+                "http://localhost:8080/api/customers",
                 formData
             );
 

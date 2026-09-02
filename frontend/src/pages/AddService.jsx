@@ -22,7 +22,7 @@ const AddService = () => {
         try {
 
             const response = await axios.post(
-                "http://localhost:5000/api/service",
+                "http://localhost:8080/api/service",
                 formData
             );
 
