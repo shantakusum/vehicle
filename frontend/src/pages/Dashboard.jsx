@@ -1,5 +1,6 @@
 import React , {useState, useEffect} from 'react'
 import axios from 'axios'
+import { BACKEND_URL } from '../../environment';
 
 
 const Dashboard = () => {
@@ -14,7 +15,7 @@ const Dashboard = () => {
   const getDashboard = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/dashboard"
+        BACKEND_URL+"/api/dashboard"
       );
 
       console.log(response.data);
@@ -27,7 +28,7 @@ const Dashboard = () => {
   const getBooking = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/bookings"
+        BACKEND_URL+"/api/bookings"
       );
 
       console.log(response.data);

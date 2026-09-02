@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BACKEND_URL } from '../../environment';
 
 const BookService = () => {
 
@@ -18,7 +19,7 @@ const BookService = () => {
     const getServices = async () => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/service"
+                BACKEND_URL+"/api/service"
             );
 
             console.log(response.data);
@@ -43,7 +44,7 @@ const BookService = () => {
         try {
 
             const response = await axios.post(
-                "http://localhost:5000/api/bookings",
+               BACKEND_URL+ "/api/bookings",
                 formData
             );
 

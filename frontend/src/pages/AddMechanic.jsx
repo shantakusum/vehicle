@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BACKEND_URL } from '../../environment';
 
 const AddMechanic = () => {
 
@@ -22,7 +23,7 @@ const AddMechanic = () => {
         try {
 
             const response = await axios.post(
-                "http://localhost:8080/api/mechanic",
+                BACKEND_URL+"/api/mechanic",
                 formData
             );
 

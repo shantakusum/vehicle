@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BACKEND_URL } from '../../environment';
 
 const AddUser = () => {
 
@@ -22,7 +23,7 @@ const AddUser = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8080/api/customers",
+                BACKEND_URL+"/api/customers",
                 formData
             );
 
