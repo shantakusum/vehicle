@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-//const verifyToken  = require("../middleware/authMiddleware.js"); 
+const verifyToken  = require("../middlewares/auth.middleware.js"); 
 
 console.log("INDEX ROUTE FILE LOADED");
 router.use((req, res, next) => {
@@ -23,21 +23,21 @@ router.post("/register", auth.register);
 router.post("/checkEmail", auth.checkEmail);
 
 //booking
-router.get("/bookings", vehicle.getBooking);
-router.post("/bookings", vehicle.postBooking);
+router.get("/bookings", verifyToken,  vehicle.getBooking);
+router.post("/bookings", verifyToken, vehicle.postBooking);
 
 //customer
-router.get("/customers", vehicle.getCustomer);
-router.post("/customers", vehicle.postCustomer);
+router.get("/customers", verifyToken , vehicle.getCustomer);
+router.post("/customers", verifyToken , vehicle.postCustomer);
 
 
-router.get("/mechanic", vehicle.getMechanic);
-router.post("/mechanic", vehicle.postMechanic);
+router.get("/mechanic",verifyToken , vehicle.getMechanic);
+router.post("/mechanic",verifyToken , vehicle.postMechanic);
 
-router.get("/service", vehicle.getService);
-router.post("/service", vehicle.postService);
+router.get("/service",verifyToken , vehicle.getService);
+router.post("/service",verifyToken , vehicle.postService);
 
-router.get("/dashboard", vehicleDashboard.getDashboard);
+router.get("/dashboard",verifyToken , vehicleDashboard.getDashboard);
 
 
 

@@ -2,7 +2,12 @@ const db = require('../models/index.model')
 
 module.exports = {
     getBooking: async(req, res) => {
-        const bookingDetails = await db.Booking.findAll({
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const offset = (page - 1) * limit;
+        const bookingDetails = await db.Booking.findAndCountAll({                                //{count, rows} return krta hai
+            limit: limit,
+            offset: offset,
             include: [
                 {
                     model: db.User

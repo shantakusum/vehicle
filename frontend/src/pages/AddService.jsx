@@ -3,7 +3,7 @@ import axios from "axios";
 import { BACKEND_URL } from '../../environment';
 
 const AddService = () => {
-
+    const token = localStorage.getItem("token");
     const [formData, setFormData] = useState({
         FullName: "",
         Category: "",

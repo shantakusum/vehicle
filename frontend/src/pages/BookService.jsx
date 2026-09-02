@@ -3,6 +3,7 @@ import axios from "axios";
 import { BACKEND_URL } from '../../environment';
 
 const BookService = () => {
+    const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
     const UserId = user.UserId;
     const [services, setServices] = useState([]);
@@ -24,8 +25,11 @@ const BookService = () => {
     const getServices = async () => {
         try {
             const response = await axios.get(
-                BACKEND_URL+"/api/service"
-            );
+                BACKEND_URL+"/api/service", {
+                    headers: {
+                         Authorization: `Bearer ${token}` // <--- Yeh bhejna zaroori hai!
+                    }
+                });
             console.log(response.data);
             setServices(response.data);
         } catch (error) {
@@ -35,8 +39,11 @@ const BookService = () => {
     const getMechanics = async () => {
     try {
         const response = await axios.get(
-            BACKEND_URL + "/api/mechanic"
-        );
+            BACKEND_URL+"/api/mechanic", {
+                headers: {
+                    Authorization: `Bearer ${token}` // <--- Yeh bhejna zaroori hai!
+                }
+            });
 
         console.log(response.data);
         setMechanics(response.data);
@@ -143,7 +150,7 @@ const BookService = () => {
                                     key={mechanic.MechanicId}
                                     value={mechanic.MechanicId}
                                 >
-                                    {mechanic.MechanicName}
+                                    {mechanic.Name}
                                 </option>
                             ))}
                         </select>

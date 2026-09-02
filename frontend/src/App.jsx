@@ -32,7 +32,6 @@ export const App = () => {
                 <Route element={<ProtectedRoute />}>
                     <Route element={<MainLayout />}>
                         <Route path="/dashboard" element={ <Dashboard />  } />
-                        <Route path="/user" element={ <AddUser />  } />
                         <Route path="/service" element={ <AddService />  } />
                         <Route path="/mechanic" element={ <AddMechanic />  } />
                         <Route path="/booking" element={ <BookService />  } />

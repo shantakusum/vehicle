@@ -4,13 +4,15 @@ import { BACKEND_URL } from '../../environment';
 
 
 const Dashboard = () => {
+    const [page, setPage] = useState(1);
+    const limit = 10;
     const [dashboard, setDashboard] = useState(null);
     const [booking, setBooking] = useState([]);
 
   useEffect(() => {
     getDashboard();
     getBooking();
-  }, []);
+  }, [page]);
    const token = localStorage.getItem("token");
   const getDashboard = async () => {
     try {
@@ -32,14 +34,18 @@ const Dashboard = () => {
     try {
       const response = await axios.get(
         BACKEND_URL+"/api/bookings",{
+            params: {
+                page: page,
+                limit: limit
+            },
             headers: {
                 Authorization: `Bearer ${token}` // <--- Yeh bhejna zaroori hai!
             }
         });
 
-      console.log(response.data);
+      console.log(response.data);                                       //{count, rows} me data aa rha ye object hahi and rows aaray hai
 
-      setBooking(response.data);
+      setBooking(response.data.rows);
 
     } catch (error) {
       console.log( error);
@@ -114,7 +120,13 @@ const Dashboard = () => {
   <h2 className="mb-4 text-xl font-bold">
     Recent Bookings
   </h2>
-
+    <button disabled={page === 1} onClick={() => setPage(page - 1)}  className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50">
+     prev
+    </button>
+    
+    <button onClick={() => setPage(page + 1)} className="rounded-lg bg-blue-300 px-4 py-2 text-sm font-medium text-white shadow-sm transition  disabled:cursor-not-allowed disabled:opacity-50">
+        Next
+    </button>
     <table className="w-full">
       <thead>
         <tr className="border-b text-left">
@@ -129,7 +141,7 @@ const Dashboard = () => {
       </thead>
 
       <tbody>
-        {booking.slice(0, 10).map((booking) => (
+        {booking.map((booking) => (
           <tr key={booking.BookingId} className="border-b">
             <td className="p-3">{booking.BookingId}</td>
             <td className="p-3">{booking.User?.FullName}</td>

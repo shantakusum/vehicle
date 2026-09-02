@@ -3,7 +3,7 @@ import axios from "axios";
 import { BACKEND_URL } from '../../environment';
 
 const AddMechanic = () => {
-
+     const token = localStorage.getItem("token");
     const [formData, setFormData] = useState({
         Name: "",
         Phone: "",
@@ -23,7 +23,7 @@ const AddMechanic = () => {
         try {
 
             const response = await axios.post(
-                BACKEND_URL+"/api/mechanic",
+                BACKEND_URL+"/api/mechanic", 
                 formData
             );
 
