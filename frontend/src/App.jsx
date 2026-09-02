@@ -22,7 +22,7 @@ export const App = () => {
   return (
     <>
         <Router>
-            <Navbar />
+            
             <Routes>
                 <Route path="/" element={<Login />} />
                     <Route path="/login" element={<Login />} />
