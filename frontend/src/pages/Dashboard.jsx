@@ -11,12 +11,15 @@ const Dashboard = () => {
     getDashboard();
     getBooking();
   }, []);
-
+   const token = localStorage.getItem("token");
   const getDashboard = async () => {
     try {
       const response = await axios.get(
-        BACKEND_URL+"/api/dashboard"
-      );
+        BACKEND_URL+"/api/dashboard", {
+            headers: {
+                    Authorization: `Bearer ${token}` // <--- Yeh bhejna zaroori hai!
+                }
+        });
 
       console.log(response.data);
       setDashboard(response.data);
@@ -28,8 +31,11 @@ const Dashboard = () => {
   const getBooking = async () => {
     try {
       const response = await axios.get(
-        BACKEND_URL+"/api/bookings"
-      );
+        BACKEND_URL+"/api/bookings",{
+            headers: {
+                Authorization: `Bearer ${token}` // <--- Yeh bhejna zaroori hai!
+            }
+        });
 
       console.log(response.data);
 
