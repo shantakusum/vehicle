@@ -41,7 +41,7 @@ db.Sequelize = Sequelize;
 sequelize.authenticate()
   .then(() => {
       console.log('--- DATABASE CONNECTED SUCCESSFULLY ---');
-      return sequelize.sync();
+      //return sequelize.sync();
       //return sequelize.sync({ alter: true }) // यहाँ सिंक करें
   })
   .then(() => {
