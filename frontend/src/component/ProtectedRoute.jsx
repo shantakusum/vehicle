@@ -1,0 +1,17 @@
+    import React from 'react'
+    import { Navigate, Outlet } from "react-router-dom";
+
+    export const ProtectedRoute = () => {
+        const token = localStorage.getItem("token");
+
+    if (!token ||
+        token === "undefined" ||
+        token === "null") {
+        return <Navigate to="/login" replace />;
+    }
+
+    return <Outlet />;
+    }
+
+
+    //Home jaise private pages ko bina login ke access hone se rokna

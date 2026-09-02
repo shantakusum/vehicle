@@ -57,7 +57,7 @@ const Dashboard = () => {
           </h2>
 
           <p className="mt-2 text-3xl font-bold">
-            {dashboard.totalCustomers}+
+            {dashboard.totalCustomers}
           </p>
         </div>
 
@@ -67,7 +67,7 @@ const Dashboard = () => {
           </h2>
 
           <p className="mt-2 text-3xl font-bold">
-            {dashboard.totalMechanics}+
+            {dashboard.totalMechanics}
           </p>
         </div>
 
@@ -77,7 +77,7 @@ const Dashboard = () => {
           </h2>
 
           <p className="mt-2 text-3xl font-bold">
-            {dashboard.totalBookings}+
+            {dashboard.totalBookings}
           </p>
         </div>
 
